@@ -2,8 +2,23 @@ require "sinatra"
 require "sinatra/reloader"
 
 get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  erb(:home)
+end
+get("/rock") do
+  @player_choice = "rock"
+  @computer_choice = ["rock", "paper", "scissors"].sample
+  @outcome = find_outcome(@player_choice, @computer_choice)
+  erb(:rps)
+end
+
+def find_outcome(player, computer)
+  return "We tied!" if player == computer
+  case player
+  when "rock"
+    computer == "scissors" ? "We won!" : "We lost!"
+  when "paper"
+    computer == "rock" ? "We won!" : "We lost!"
+  when "scissors"
+    computer == "paper" ? "We won!" : "We lost!"
+  end
 end
