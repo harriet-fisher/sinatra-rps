@@ -10,7 +10,18 @@ get("/rock") do
   @outcome = find_outcome(@player_choice, @computer_choice)
   erb(:rps)
 end
-
+get("/paper") do
+  @player_choice = "paper"
+  @computer_choice = ["rock", "paper", "scissors"].sample
+  @outcome = find_outcome(@player_choice, @computer_choice)
+  erb(:rps)
+end
+get("/scissors") do
+  @player_choice = "scissors"
+  @computer_choice = ["rock", "paper", "scissors"].sample
+  @outcome = find_outcome(@player_choice, @computer_choice)
+  erb(:rps)
+end
 def find_outcome(player, computer)
   return "We tied!" if player == computer
   case player
